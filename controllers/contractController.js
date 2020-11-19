@@ -48,32 +48,7 @@ exports.getContract = async function (req, res) {
 
 exports.getAllContract = async function(req, res){
 
-//         const id = req.params.roomnoId
-//         const tenantId = req.params.fullnameId
 
-// //tenantCollection.find().toArray(function (err, tenants) {
-//          contractCollection.findById(id)
-//         .then(contract => {
-
-//             roomCollection.find()
-//             .then(room => {
-                   
-//             contractCollection.findById(tenantId)
-//             .then(tenant => {
-//                 tenantCollection.find()
-//                 .then(tenant =>{
-                  
-//         res.render('allcontracts', {
-//             tenant: tenant,
-//             room: room ,
-//             contract:contract,
-//             regErrors: req.flash('regErrors')  
-// })
-// })
-// })
-// }) 
-// })
-//let contractdetail = []
 collectiont.collection('contract').aggregate([
         {
             $lookup:
@@ -123,22 +98,28 @@ exports.postContractRegister = function (req, res) {
 
     })
 }
-// exports.editContracts= function(req, res){
-//     const id = req.param.fullnameId
-//     tenantCollection.aggregate([
-//         {
-//             $lookup:
-//             {
-//                 from: contractCollection,
-//                 localField:'fullnameId',
-//                 foreignField:'_id',
-//                 as: 'contractDetails'
-//             }
-//         }
-//     ]).toArray(function(err, res){
-//         if(err) throw err;
-//     console.log(JSON.stringify(res))
-//     })
+exports.viewSingle = async function(req, res){
+    console.log("hi every one")
+   // res.render('editContract')
+    const id = req.params.id;
 
-// 
+    try{
+        console.log("hi every 2one")
+        let contract = await Contract.findById(req.params.id)
+        console.log("try")
+        res.render('editContract', {contract: contract,  regErrors: req.flash('regErrors')})
+       
+
+    }catch{
+        res.render('404')
+
+    }
+  
+ 
+
+  
+    }
+
+
+
     

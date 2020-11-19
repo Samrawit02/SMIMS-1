@@ -1,0 +1,129 @@
+<%- include('includes/employee/header.ejs')  %>
+<!--header menu end-->
+<!--sidebar start-->
+<%- include('includes/employee/sidebar.ejs')  %>
+<!--sidebar end-->
+<!--main container start-->
+<div class="main-container">
+
+
+    <h3>Edit Contract</h3>
+
+    
+    <form action="/contract" method="POST"  class="main-form needs-validation" novalidate>
+        <% regErrors.forEach(function(message){%>
+            <div class="alert alert-danger small"><%= message%></div>
+        <%}) %>
+       
+
+        
+        <div class="row">
+           
+                <div class="form-group">
+                    <label for="Contract No">Contract No.</label>
+                    <input type="text" value="<%=contract.contractNo %>" name="contractNo" id="contractNo" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="Full Name">Full Name</label>
+                    <select id="tenantName" name="tenantName" class="form-control">
+                       
+                        <option value="<%= contract.fullnameId.fullnameid %>"><%=contract.fullnameId.fullname  %> </option>
+                        
+                    </select>
+                </div>
+                
+            <div class="form-group">
+                <label for="CStart Date"> Start Date</label>
+                <input type="Date"  value="<%=contract.startDate %>"   name="startDate" id="startDate" class="form-control" required>
+            <!-- <div class="invalid-feedback">Please enter a valid username.</div> -->
+            </div>
+
+            <div class="form-group">
+                <label for="CEnd Date">End Date</label>
+                <input type="Date" value="<%=contract.endDate %>" name="endDate" id="endDate" class="form-control" required>
+            <!-- <div class="invalid-feedback">Please enter a valid username.</div> -->
+            </div>
+            <div class="form-group">
+                <label for="Room Number">Room Number</label>
+                 <select name="roomno" id="roomno"  class="form-control" >
+                    <option value="<%= contract.roomnoId.id %>"><%= contract.roomnoId.roomno %> </option>
+                    
+                 </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="Contract Date">Contract Date</label>
+                <input type="Date" value="<%=contract.date %>" name="date" id="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <input type="Number"  value="<%=contract.price %>"name="price" id="price" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Advance">Advance</label>
+                <input type="Number" value="<%=contract.advance %>" name="advance" id="advance" class="form-control">
+            </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <!-- <script>
+        var form = document.querySelector('.needs-validation');
+
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        })
+    </script> -->
+
+</div>
+<!--main container end-->
+
+<!--wrapper end-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".sidebar-btn").click(function () {
+            $(".wrapper").toggleClass("collapse");
+        });
+    });
+</script>
+
+
+<!-- <script>
+   // let roomid =document.getElementById("roomno").value
+   let roomid =document.getElementById("roomno").value
+  function getRoomsize(){
+      let roomsize = room.id
+
+     
+      let roomid =document.getElementById("roomno").value
+      alert(room._id)
+     // for(i =0; i <=rooms.length ; i++){
+      document.getElementById("roomsize").value = roomid
+     //}
+
+    }
+
+</script>  -->
+
+
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 const receiptCollection  =require('../db').db().collection("receipt")
+const  ObjectId  = require('mongodb').ObjectID
 const validator = require('validator')
 
 
@@ -62,12 +63,12 @@ Receipt.prototype.cleanUp = function () {
     //get ride of any bogys properties
     this.data = {
         receiptNo: this.data.receiptNo,
-        fullnameId: this.data.tenantName,
-        tinnumber: this.data.tinnumber,
+        fullnameId: new ObjectId(this.data.tenantName) ,
+        // tinnumber: this.data.tinnumber,
         startDate: this.data.startDate,
         endDate: this.data.endDate,
-        roomsize: this.data.roomsize,
-        roomnoId: this.data.roomno,
+        // roomsize: this.data.roomsize,
+        roomnoId: new ObjectId(this.data.roomno),
         date: this.data.date,
         price: this.data.price,
         total: this.data.total,
@@ -152,6 +153,47 @@ Receipt.prototype.addReceipt = function(){
         }
     
     })
+}
+
+Receipt.findAllReceipts = function(){
+    //console.log("receip")
+   // return new Promise(async (resolve, reject)=> {
+    //    let receipts = await receiptCollection.find()
+        let receipts =  receiptCollection.aggregate([
+            {
+                $lookup:
+    
+                {
+                    from: 'room',
+                    localField:'roomnoId',
+                    foreignField: '_id',
+                    as: 'roomDetail'
+    
+                }},
+                {$lookup: {
+                    from: 'tenant',
+                    localField:'fullnameId',
+                    foreignField: '_id',
+                    as: 'tenantDetail'
+
+                }
+    
+            }
+        ]).toArray()
+console.log("hi")
+        if(receipts.length){
+            console.log("hi2")
+            //console.log(receipts)
+            resolve(receipts)  
+            console.log("tenantDocument")
+ 
+         }else{
+             reject()
+ 
+         }
+               
+       
+
 }
 
 module.exports = Receipt

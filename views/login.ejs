@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Welcome To Shopping Mall</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/main.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+	<title>Login Form</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/js/bootstrap.js">
+  <link rel="stylesheet" type="text/css" href="/hstyle.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/global.css">
 
 </head>
-
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    
+  <a class="navbar-brand" href="/">SMIMS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">SHOPPING MAll</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home </a>
+      </li>      <li class="nav-item active">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/service">Service </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/contactUs">Contact </a>
+      </li>
+      <!-- <li class="nav-item active">
+        <a class="nav-link" href="login.html">LogIn</a>
+      </li> -->
+     
+     
+    </ul>
+    
+  </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="home.html"><i class="fa fa-fw fa-home"></i>Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html"><i class="fas fa-question-circle"></i>About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ContactUs.html"><i class="fas fa-envelope"></i>Contact us</a>
-                    </li>
+  </div>  
 
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/login"><i class="fa fa-fw fa-user"></i>Sign In</a>
-                    </li> -->
+</nav>
+<% errors.forEach(function(message){%>
+  <div class="alert alert-danger text-center"><%= message%></div>
+<%}) %>
 
+<section class="container-fluid bg"> 
+	<section class="row justify-content-center">
+		<section class="col-12 col-sm-6 col-md-3">
+<form action="/login" method="POST" class="form-container">
 
-                </ul>
-            </div>
-        </div>
+  <% errors.forEach(function(message){%>
+    <div class="alert alert-danger text-center"><%= message%></div>
+<%}) %>
 
-    </nav>
-    <% errors.forEach(function(message){%>
-        <div class="alert alert-danger text-center"><%= message%></div>
-    <%}) %>
-    <div class="loginForm">
+  <div class="form-group">
+    <label for="exampleusername">Username</label>
+    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="username" class="form-text text-muted">We'll never share your password with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-select">
+    <label for="exampleRole">Role</label>
+      <input name="role" class="form-control form-control-sm input-dark" type="text"
+          placeholder="Role">
+  </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary btn-block ">Sign In</button>
+</form>
+			
+		</section>
+		
+	</section>
 
-                    <form action="/login" method="POST" class="mb-0 ">
-                        <% errors.forEach(function(message){%>
-                            <div class="alert alert-danger text-center"><%= message%></div>
-                        <%}) %>
-            <div class="form-row align-items-center">
-                <div class="col">
-                    <div class="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                        <input name="username" class="form-control form-control-sm input-dark" type="text"
-                            placeholder="Username" autocomplete="off">
-                    </div>
-                    <div class="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                        <input name="password" class="form-control form-control-sm input-dark" type="password"
-                            placeholder="Password">
-                    </div>
-                    <div class="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                        <input name="role" class="form-control form-control-sm input-dark" type="text"
-                            placeholder="Role">
-                    </div>
-                                         
-                    <div class="col-md-auto signIn">
-                        <button class="btn btn-primary btn-sm">Sign In</button>
-                    </div>
-                </div>
-            </div>
-           
-        </form>
-        
-    </div>
+</section>
 
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+</html> 

@@ -19,7 +19,7 @@ router.get('/login', userController.login)
 
 router.post('/login', userController.postlogin)
 router.post('/logout', userController.logout)
-router.post('admin/register', userController.postRegister)
+router.post('/register', userController.postRegister)
 router.get('/tenantRegistration', tenantController.tenatRegister)
 router.post('/tenantRegistration', tenantController.postTenantRegister)
 
@@ -30,11 +30,14 @@ router.post('/room', roomController.postRoom)
 router.get('/contract', contractController.getContract)
 router.post('/contract', contractController.postContractRegister)
 router.get('/allcontracts',contractController.getAllContract)
+router.get('/contract/:id',contractController.viewSingle)
 
 
 
 router.get('/receipt',receiptController.getReceipt)
 router.post('/receipt',receiptController.postReceipt)
+router.get('/allreceipts',receiptController.getAllReceipts)
+
 
 router.get('/expense', expenseController.getExpense)
 router.post('/expense', expenseController.postExpense)

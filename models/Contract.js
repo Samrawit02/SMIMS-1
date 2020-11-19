@@ -1,7 +1,7 @@
 const contractCollection  =require('../db').db().collection("contract");
 const validator = require('validator');
 const Tenant  = require('../db').db().collection("contract");
-
+const objectId = require('mongodb').ObjectID
 
 let Contract = function (data) {
     this.data = data;
@@ -50,19 +50,21 @@ Contract.prototype.cleanUp = function () {
     this.data = {
         contractNo: this.data.contractNo,
         date: this.data.date,
-        fullnameId: this.data.tenantName,
-        tinnumber: this.data.tinnumber,
+        fullnameId: new objectId(this.data.tenantName),
+        // tinnumber: this.data.tinnumber,
         startDate: this.data.startDate,
         endDate: this.data.endDate,
-        roomsize: this.data.roomsize,
-        roomnoId: this.data.roomno,
-        roomtype: this.data.roomtype,
+        // roomsize: this.data.roomsize,
+        roomnoId:new objectId(this.data.roomno) ,
+        // roomtype: this.data.roomtype,
         price:this.data.price,
         advance:this.data.advance,
         createdDate:  new Date()
 
     }
-
+    
+    
+    
 }
 Contract.prototype.validate =  function(){
     return new Promise(async  (resolve, reject) =>{
@@ -132,8 +134,49 @@ Contract.prototype.addContract = function(){
     })
 }
 
-Contract.getAllContract = function(){
-    
+Contract.findById = function(id){
+    console.log("hi every 3one")
+    return new Promise(async (resolve, reject)=> {
+        console.log("hi every 3one")
+       if(typeof(id)!="string" || !objectId.isValid(id)){
+        
+           reject()
+           return
+       }
+       let contracts = await contractCollection.aggregate([
+           {$match: {_id: new objectId(id)}},
+           {$lookup: {from:"tenant", localField: "fullnameId", foreignField:"_id", as: "tenantDocument"}},
+           {$lookup: {from:"room", localField: "roomnoId", foreignField:"_id", as: "roomDocument"}},
+            {$project: {
+                contractNo: 1,
+                date: 1,
+                roomsize: 1,
+                roomtype:1,
+                tinnumber:1,
+                startDate :1,
+                endDate :1,
+                price :1,
+                advance :1,
+                fullnameId:{$arrayElemAt: ["$tenantDocument",0]},
+                roomnoId: {$arrayElemAt: ["$roomDocument",0]}
+            }}
+       ]).toArray()
+
+       //clean up tenant and rooms
+     
+       
+
+       if(contracts.length){
+           console.log(contracts)
+           resolve(contracts[0])  
+           console.log("tenantDocument")
+
+        }else{
+            reject()
+
+        }
+    })
+     
 }
 
 module.exports = Contract

@@ -11,18 +11,16 @@
         <h1>All Contracts</h1>
 
     </div>
+
 <table class="table  table-bordered table-striped table-inverse table-responsive">
     <thead class="thead-inverse">
         <tr>
             <th>Id</th>
             <th>Contract No</th>
             <th>FullName</th>
-            <th>Tin No.</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Room Size</th>
             <th>RoomId</th>
-            <th>Room Type</th>
             <th>Price</th>
             <th>Date</th>
             <th>Advance</th>
@@ -33,26 +31,23 @@
                 <tr>
                 <td><%=ContractDetail._id %></td>
                 <td><%=ContractDetail.contractNo %></td>
-                <td><%=ContractDetail.fullname %></td>
-                <td><%=ContractDetail.tinnumber%></td>
+                <td><%=ContractDetail.fullnameId %></td>
                 <td><%=ContractDetail.startDate %></td>
                 <td><%=ContractDetail.endDate %></td>
-                <td><%=ContractDetail.roomsize%></td>
-                <td><%=ContractDetail.roomno%></td>
-                <td><%=ContractDetail.roomtype%></td>
+                <td><%=ContractDetail.roomnoId%></td>
                 <td><%=ContractDetail.price %></td>
                 <td><%=ContractDetail.date %></td>
                 <td><%=ContractDetail.advance %></td>
                 <td class="d-flex">
-                    <a href="/admin/posts/edit/{{_id}}" class="btn btn-sm btn-warning mr-2">Edit Post</a>
+                    <a href="/contract/<%= ContractDetail._id%>" class="btn btn-sm btn-warning mr-2">Edit Post</a>
                 
-                    <form action="/admin/posts/delete/{{id}}?newMethod=DELETE" method="post">
+                    <form action="/allcontract/{{_id}}?newMethod=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger" type="submit">Delete Post</button>
                     </form>
                     </td>
             </tr>
 
-            
+              
        <% }); %> 
           
         </tbody>

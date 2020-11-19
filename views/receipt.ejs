@@ -34,12 +34,8 @@
         </select>
     </div>
  <div class="col">
-     <div class="form-group">
-         <label for="Tin Number">Tin Number</label>
-         <input type="Number" name="tinnumber" id="tinnumber" class="form-control">
+    
 
-     </div>
-</div>
 <div class="form-group">
     <label for="RStart Date">startDate</label>
     <input type="Date" name="startDate" id="startDate" onchange="cal()" class="form-control" required>
@@ -60,14 +56,9 @@
      <select id="roomno" name="roomno" id="roomno" class="form-control" >
         <option value="">Room No.</option>
         <% room.forEach(function (rooms) {%>
-        <option value="<%=room._id %>"><%=rooms.roomno  %> </option>
+        <option value="<%= rooms._id %>"><%=rooms.roomno  %> </option>
         <%}) %>
      </select>
-</div>
-
-<div class="form-group">
-    <label for="Room Size">Room Size</label>
-    <input type="Number" name="roomsize" id="roomsize"  class="form-control" required>
 </div>
 
 <div class="form-group">
@@ -84,16 +75,13 @@
  <label for="VAT">VAT</label>
   <input type="Number" name="vat" id="vat" onclick="calTotal()" class="form-control">
 </div>
-
-
 <div class="form-group">
  <label for="Total Amount">Total Amount</label>
   <input type="Number" name="totalAmount" id="totalAmount" class="form-control">
 </div>
 
-
-
 <button type="submit" class="btn btn-primary">Submit</button>
+</div>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -149,10 +137,10 @@ function cal(){
 </script>
 <script type="text/javascript">
 function calTotal(){
-    let roomsize = document.getElementById("roomsize").value
+   // let roomsize = document.getElementById("roomsize").value
     let price = document.getElementById("price").value
     let month = document.getElementById("months").value
-    result = parseFloat(roomsize * price * month)
+    result = parseFloat( price * month)
     let vatre = parseFloat(result* 0.15)
     let totalamount = parseFloat(vatre + result)
     if(!isNaN(result)){

@@ -1,3 +1,4 @@
+
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
@@ -32,4 +33,3 @@ app.set('view engine', 'ejs')
 app.use('/', router)
 
 module.exports = app
-

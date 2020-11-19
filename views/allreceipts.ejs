@@ -1,0 +1,63 @@
+
+<%- include('includes/employee/header.ejs')  %>
+<!--header menu end-->
+<!--sidebar start-->
+<%- include('includes/employee/sidebar.ejs')  %>
+<!--sidebar end-->
+<!--main container start-->
+
+<div class="main-container">
+    <div class="alert alert-secondary text-center ">
+        <h1>All Receipts</h1>
+
+    </div>
+
+<table class="table  table-bordered table-striped table-inverse table-responsive">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Id</th>
+            <th>Receipt No</th>
+            <th>Date</th>
+            <th>FullName</th>
+            <th>RoomId</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Vat</th>
+            <th>Total Amount</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>          
+            
+            <% receipt.forEach(receipt => {%>
+                <tr>
+                <td><%=receipt._id %></td>
+                <td><%=receipt.receiptNo %></td>
+                <td><%= receipt.date %></td>
+                <td><%=receipt.fullnameId %></td>
+                <td><%=receipt.roomnoId%></td>
+                <td><%=receipt.startDate %></td>
+                <td><%=receipt.endDate %></td>
+                <td><%=receipt.price %></td>
+                <td><%=receipt.total %></td>
+                <td><%=receipt.vat %></td>
+                <td><%=receipt.totalAmount %></td>
+                
+                <td class="d-flex">
+                    <a href="/receipt/<%= receipt._id%>" class="btn btn-sm btn-warning mr-2">Edit Post</a>
+                
+                    <form action="/receipt/<%= receipt._id%>?newMethod=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger" type="submit">Delete Post</button>
+                    </form>
+                    </td>
+            </tr>
+
+              
+       <% }); %> 
+          
+        </tbody>
+</table>
+   
+</div>

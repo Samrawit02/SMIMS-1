@@ -1,19 +1,75 @@
-<%- include('includes/employee/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin DashBoard</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="in.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-<%- include('includes/employee/sidebar.ejs')  %>
+
+
+  <style>
+    body{
+        background: url(image/liam-truong-YjWW9-VJlw4-unsplash.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
     
-<div class="main-container">
+  }
+    hr{
+        background: white;	
+    }
+
+    .contact-form{
+			background:rgba(0,0,0, .6);
+			color:white;
+			margin-top: 5px;
+      margin-bottom:15px;
+      margin-right: 10px;
+			padding-left:120px;
+      padding-right: 120px;
+      padding-top: 10px;
+      padding-bottom:120px;
+			box-shadow: 0px 0px 10px 3px grey;
+		}
+   </style>
+
+
+  </head>
+   
+   
+
+
+<body>
+    <div class="sidebar">
+        <!-- <header>CONTENT</header> -->
+        <a href="/home"><i class="fa fa-fw fa-home"></i><span>Home</span></a>
+        <a href="/register"><i class="fa fa-fw fa-home"></i><span>Register Users</span></a>
+        <!-- <a href="about.html"><i class="fas fa-question-circle"></i><span>About</span></a>
+        <a href="ContactUs.html"><i class="fas fa-envelope"></i><span>Contact Us</span></a> -->
+        <!-- <a class="active" href="in.html"><i class="fa fa-envelope-open"></i><span>Inbox</span></a> -->
+        <a href="notification.html"><i class="fa fa-bell"></i><span>Notification</span></a>
+        <form action="/logout" method="POST" >
+            <button class="fa fa-fw fa-user" ><span>Sign Out</span></button>
+        <!-- <a href="#"><i class="fa fa-fw fa-user"></i><span>Sign Out</span></a> -->
+        </form>
+
+    </div>
+
+    
+<div class="container contact-form">
         
             
-                <h1 class="text-center">Tenant Registratioin</h1>
+                <h1 class="text-center ">Registration</h1>
 
-                <form action="/register" method="POST" class="form-inline">
+                <form action="/register" method="POST" class="form-inline needs-validation" novalidate>
                     
                     <% regErrors.forEach(function(message){%>
                         <div class="alert alert-danger small"><%= message%></div>
                     <%}) %>
-
-                    <form class="needs-validation" novalidate>
+                    <div class="container">
+                        
                         <label class="lable col-md-3 control-lable">Full Name </label>
                         <div class="col-md-9">
                             <input id="full" type="text" class="form-control" name="fullname" placeholder="Full Name">
@@ -50,7 +106,8 @@
                         <div class="col-md-auto">
                             <button class="btn btn-primary btn-sm">Save</button>
                         </div>
-                    </form>
+                   
+                    </div>
                 </form>
           
     </div>

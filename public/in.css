@@ -75,6 +75,10 @@ button.active button:hover{
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+.tenant{
+  display: flex;
+  text-align: center;
+}
 
 
 

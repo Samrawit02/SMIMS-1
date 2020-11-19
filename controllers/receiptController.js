@@ -1,6 +1,7 @@
 const Receipt = require('../models/Receipt')
 const tenantCollection = require('../db').db().collection("tenant")
 const roomCollection = require('../db').db().collection("room")
+const collection = require('../db').db('shoppingMall')
 
 
 exports.getReceipt = async function (req, res) {
@@ -59,3 +60,39 @@ exports.postReceipt = function (req, res) {
     })
 }
 
+exports.getAllReceipts = async function(req, res){
+
+    collection.collection('receipt').aggregate([
+        {
+            $lookup:
+
+            {
+                from: 'tenant',
+                localField:'fullnameId',
+                foreignField: '_id',
+                as: 'receiptDetail'
+
+            }
+
+        }
+    ]).toArray(function(err, receipt){
+        if(err) throw err
+        else{
+           // console.log(receipt)
+
+            res.render('allreceipts', {
+                receipt: receipt,
+              //  room: Collectionrooms ,
+                regErrors: req.flash('regErrors')  
+    })
+}
+
+    })
+
+}
+
+
+
+
+    
+    
